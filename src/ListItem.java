@@ -8,12 +8,9 @@ public abstract class ListItem{
     }
 
     abstract ListItem next();
-    abstract ListItem setNext();
-
     abstract ListItem setNext(ListItem item);
 
     abstract ListItem previous();
-    abstract ListItem setPrevious();
 
     abstract ListItem setPrevious(ListItem item);
 
