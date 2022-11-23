@@ -1,6 +1,10 @@
 public abstract class ListItem{
-    protected ListItem rightLink;
-    protected ListItem leftLink;
+
+    // creating instances of this very same class within a class
+    protected ListItem rightLink = null;
+    protected ListItem leftLink = null;
+
+    //
     protected Object value;
 
     public ListItem(Object value) {
