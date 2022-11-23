@@ -13,39 +13,35 @@ public class MyLinkedList implements NodeList {
     }
 
     @Override
-    public boolean addItem(ListItem item) {
-        if (this.root != null) {
-            // list empty. so item becomes head of list
-            this.root = item;
+    public boolean addItem(ListItem newItem) {
+        if (this.root == null) {
+            this.root = newItem;
             return true;
         }
+
         ListItem currentItem = this.root;
         while (currentItem != null) {
-            int comparison = (currentItem.compareTo(item));
+            int comparison = (currentItem.compareTo(newItem));
             if (comparison < 0) {
-                // item is greater, move right is possible
                 if (currentItem.next() != null) {
                     currentItem = currentItem.next();
                 } else {
-                    // there is no next, so insert end of the list
-                    currentItem.setNext(item).setPrevious(currentItem);
+                    currentItem.setNext(newItem).setPrevious(currentItem);
                     return true;
                 }
             } else if (comparison > 0) {
-                // newItem is less, insert before
                 if (currentItem.previous() != null) {
-                    currentItem.previous().setNext(item).setPrevious(currentItem.previous());
-                    item.setNext(currentItem).setPrevious(item);
+                    currentItem.previous().setNext(newItem).setPrevious(currentItem.previous());
+                    newItem.setNext(currentItem).setPrevious(newItem);
                 } else {
-                    // the node with a previous is the root
-                    item.setNext(this.root).setPrevious(item);
-                    this.root = item;
+                    newItem.setNext(this.root).setPrevious(newItem);
+                    this.root = newItem;
                 }
                 return true;
+            } else {
+                System.out.println(newItem.getValue() + " is already present, not added.");
+                return false;
             }
-            // equal
-            System.out.println(item.getValue() + " already present, not added");
-            return false;
         }
         return false;
     }
